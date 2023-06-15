@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import Button from "./Components/Button";
-import "./App.css";
+import "./App.sass";
+import ToDoListForm from "./Components/ToDoListForm";
+import ToDoListItem from "./Components/ToDoListItem";
+
+interface ListItem {
+    id: number;
+    value: string;
+    completed: boolean;
+}
 
 function App() {
-    const [tasks, setTasks] = useState<any[]>([]);
-    const [input, setInput] = useState("");
+    const [tasks, setTasks] = useState<ListItem[] | any[]>([]);
 
-    const deleteFromList = (value: any) => {
-        setTasks((oldValues) => {
-            return oldValues.filter((task) => task.id !== value.id);
-        });
-    };
-
-    const addToList = () => {
+    function addTask(value: string) {
         setTasks((currentTasks) => {
             return [
                 ...currentTasks,
-                { id: crypto.randomUUID(), value: input, completed: false },
+                { id: crypto.randomUUID(), value, completed: false },
             ];
         });
-        setInput("");
-    };
+    }
 
     function toggleCompleted(id: number, completed: boolean) {
         setTasks((currentTasks) => {
@@ -31,26 +30,14 @@ function App() {
                 return task;
             });
         });
+        console.log(tasks);
     }
 
-    const listItems = tasks.map((task) => (
-        <li key={task.id} className="list-group-item">
-            <input
-                checked={task.completed}
-                onChange={(e) => {
-                    toggleCompleted(task.id, e.target.checked);
-                }}
-                type="checkbox"
-            />
-            <span>{task.value}</span>
-            <button
-                className="btn btn-danger"
-                onClick={() => deleteFromList(task)}
-            >
-                Delete
-            </button>
-        </li>
-    ));
+    function deleteFromList(deletedTask: ListItem) {
+        setTasks((currentTasks) => {
+            return currentTasks.filter((task) => task.id !== deletedTask.id);
+        });
+    }
 
     return (
         <div className="app-container">
@@ -59,20 +46,24 @@ function App() {
                     <h1>To do list</h1>
                 </div>
             </div>
-            <div className="app-main">
-                <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Add item to list"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                ></input>
-                <Button onClick={addToList} />
+            <div className="app-form">
+                <ToDoListForm onSubmit={addTask} />
             </div>
             <hr />
-            <ul className="list-group">{listItems}</ul>
+            {tasks.length === 0 && <h5>No todos</h5>}
+            <ul className="list-group">
+                {tasks.map((task) => (
+                    <ToDoListItem
+                        key={task.id}
+                        task={task}
+                        toggleCompleted={toggleCompleted}
+                        deleteFromList={deleteFromList}
+                    />
+                ))}
+            </ul>
         </div>
     );
 }
 
 export default App;
+export type { ListItem };
