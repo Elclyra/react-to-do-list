@@ -11,13 +11,13 @@ interface ListItem {
 
 function App() {
     const [tasks, setTasks] = useState<ListItem[] | any[]>(() => {
-        const localValue = localStorage.getItem("ITEMS");
+        const localValue = localStorage.getItem("TASKS");
         if (localValue === null) return [];
         return JSON.parse(localValue);
     });
 
     useEffect(() => {
-        localStorage.setItem("ITEMS", JSON.stringify(tasks));
+        localStorage.setItem("TASKS", JSON.stringify(tasks));
     }, [tasks]);
 
     function addTask(value: string) {

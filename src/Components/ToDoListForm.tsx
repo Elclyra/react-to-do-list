@@ -20,13 +20,12 @@ function ToDoListForm(props: Props) {
     return (
         <form onSubmit={handleSubmit}>
             <input
-                className="form-control"
                 type="text"
-                placeholder="Add item to list"
+                placeholder="Add a task to the list"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             ></input>
-            <button className="btn btn-primary">Add a task</button>
+            <button className="btn btn-primary"></button>
         </form>
     );
 }

@@ -7,10 +7,50 @@
     border-radius: 15px
     min-height: 800px
     background-color: #fff0f3
+    position: relative
+    &::before
+        content: ''
+        background-image: url(../public/flowers.png)
+        position: absolute
+        height: 100%
+        width: 100%
+        background-size: 160%
+        opacity: 0.15
+        filter: blur(1px)
 
     .app-header
         width: 500px
         margin-top: 80px
+        z-index: 1
+    .app-form
+        z-index: 1
+        width: 500px
+        margin-top: 80px
+        position: relative
+        form
+            display: flex
+            input
+                border: 0
+                border-bottom: 4px dashed #ffbbc9
+                border-radius: 0
+                background-color: transparent
+                width: 100%
+                font-size: 20px
+                padding-right: 30px
+                &:focus-visible
+                    outline: none
+            button
+                position: absolute
+                right: 0
+                background-image: url(../public/triangle.png)
+                background-size: cover
+                background-repeat: no-repeat
+                height: 30px
+                width: 30px
+                padding: 0
+                background-color: transparent
+                border: 0
+                bottom: 5px
 
     .list-cover
         display: flex
@@ -47,4 +87,4 @@
                 color: #f9708c
 body
     background-color: rgb(230, 253, 255)
-    font-family: cursive
+    font-family: serif
