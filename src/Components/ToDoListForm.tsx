@@ -26,7 +26,7 @@ function ToDoListForm(props: Props) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             ></input>
-            <button className="btn btn-primary">Add</button>
+            <button className="btn btn-primary">Add a task</button>
         </form>
     );
 }

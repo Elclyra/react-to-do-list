@@ -9,7 +9,7 @@ interface Props {
 
 function ToDoListItem({ task, toggleCompleted, deleteFromList }: Props) {
     return (
-        <li className="list-group-item">
+        <li className="list-cover-item">
             <input
                 checked={task.completed}
                 onChange={(e) => {
@@ -18,12 +18,7 @@ function ToDoListItem({ task, toggleCompleted, deleteFromList }: Props) {
                 type="checkbox"
             />
             <span>{task.value}</span>
-            <button
-                className="btn btn-danger"
-                onClick={() => deleteFromList(task)}
-            >
-                Delete
-            </button>
+            <button onClick={() => deleteFromList(task)}>X</button>
         </li>
     );
 }

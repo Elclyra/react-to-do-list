@@ -1,33 +1,50 @@
 .app-container
-    width: 800px
+    width: 600px
     margin: 80px auto 0 auto
     display: flex
     align-items: center
     flex-flow: column
+    border-radius: 15px
+    min-height: 800px
+    background-color: #fff0f3
 
-    .header
+    .app-header
         width: 500px
+        margin-top: 80px
 
-    .list-group
+    .list-cover
         display: flex
+        flex-flow: column
         justify-content: center
         align-items: center
         margin-top: 40px
+        padding: 0
 
         &-item
             width: 500px
             position: relative
             display: flex
             align-items: center
-            justify-content: space-between
-
+            margin-bottom: 25px
             input
                 margin-right: 10px
                 height: 20px
                 width: 20px
-
+                background-color: #fff0f3
+                accent-color: #ff5376
+            span
+                border-bottom: 3px dashed #ffbbc9
+                width: 100%
+                padding-bottom: 2px
+                font-size: 18px
             button
-                float: right
-
+                border: 0
+                position: absolute
+                right: 0
+                background: transparent
+                font-size: 20px
+                padding: 0 0 5px 0
+                color: #f9708c
 body
     background-color: rgb(230, 253, 255)
+    font-family: cursive

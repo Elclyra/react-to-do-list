@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.sass";
 import ToDoListForm from "./Components/ToDoListForm";
 import ToDoListItem from "./Components/ToDoListItem";
@@ -10,7 +10,15 @@ interface ListItem {
 }
 
 function App() {
-    const [tasks, setTasks] = useState<ListItem[] | any[]>([]);
+    const [tasks, setTasks] = useState<ListItem[] | any[]>(() => {
+        const localValue = localStorage.getItem("ITEMS");
+        if (localValue === null) return [];
+        return JSON.parse(localValue);
+    });
+
+    useEffect(() => {
+        localStorage.setItem("ITEMS", JSON.stringify(tasks));
+    }, [tasks]);
 
     function addTask(value: string) {
         setTasks((currentTasks) => {
@@ -41,7 +49,7 @@ function App() {
 
     return (
         <div className="app-container">
-            <div className="header">
+            <div className="app-header">
                 <div className="text-center">
                     <h1>To do list</h1>
                 </div>
@@ -50,8 +58,8 @@ function App() {
                 <ToDoListForm onSubmit={addTask} />
             </div>
             <hr />
-            {tasks.length === 0 && <h5>No todos</h5>}
-            <ul className="list-group">
+            {tasks.length === 0 && <h5>No todos yet</h5>}
+            <ul className="list-cover">
                 {tasks.map((task) => (
                     <ToDoListItem
                         key={task.id}
