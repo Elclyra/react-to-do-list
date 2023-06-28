@@ -9,7 +9,13 @@ interface Props {
 
 function ToDoListItem({ task, toggleCompleted, deleteFromList }: Props) {
     return (
-        <li className="list-cover-item">
+        <li
+            className={
+                task.completed
+                    ? "list-cover-item list-cover-item__checked"
+                    : "list-cover-item"
+            }
+        >
             <input
                 checked={task.completed}
                 onChange={(e) => {
