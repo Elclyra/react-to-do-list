@@ -58,7 +58,7 @@ function App() {
                 <ToDoListForm onSubmit={addTask} />
             </div>
             <hr />
-            {tasks.length === 0 && <h5>No todos yet</h5>}
+            {tasks.length === 0 && <h5>No tasks yet</h5>}
             <ul className="list-cover">
                 {tasks.map((task) => (
                     <ToDoListItem
