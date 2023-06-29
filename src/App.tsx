@@ -38,7 +38,6 @@ function App() {
                 return task;
             });
         });
-        console.log(tasks);
     }
 
     function deleteFromList(deletedTask: ListItem) {

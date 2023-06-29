@@ -65,6 +65,8 @@ body
         margin-top: 40px
         padding: 0
         width: 100%
+        .inactive
+            opacity: 0
         &-item
             width: 100%
             max-width: 500px
@@ -72,6 +74,7 @@ body
             display: flex
             align-items: center
             margin-bottom: 25px
+            transition: opacity 0.5s
             animation: fade-in 0.5s linear
             input
                 margin-right: 10px

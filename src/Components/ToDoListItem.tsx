@@ -24,7 +24,17 @@ function ToDoListItem({ task, toggleCompleted, deleteFromList }: Props) {
                 type="checkbox"
             />
             <span>{task.value}</span>
-            <button onClick={() => deleteFromList(task)}>X</button>
+            <button
+                onClick={(e) => {
+                    let item = e.currentTarget.parentNode as HTMLElement;
+                    item.classList.add("inactive");
+                    setTimeout(() => {
+                        deleteFromList(task);
+                    }, 500);
+                }}
+            >
+                X
+            </button>
         </li>
     );
 }
